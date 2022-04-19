@@ -1,0 +1,11 @@
+apiVersion: k6.io/v1alpha1
+kind: K6
+metadata:
+  name: k6-logtest
+spec:
+  arguments: -o influxdb=http://influxdb.k6-operator-system.svc.cluster.local:8086/k6
+  parallelism: 4
+  script:
+    configMap:
+      name: crocodile-stress-test
+      file: test.js
